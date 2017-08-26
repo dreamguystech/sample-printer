@@ -35,11 +35,12 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
 		alert();
-		cordova.plugins.printer.isAvailable(
-				function (isAvailable) {
-					alert(isAvailable ? 'Service is available' : 'Service NOT available');
-				}
-			);
+				cordova.plugins.zbtprinter.find(function(mac) { 
+				alert(mac); 
+			}, function(fail) { 
+				alert(fail); 
+			}
+		);
         document.getElementById('check').onclick = app.check;
         document.getElementById('pick').onclick = app.pick;
         document.getElementById('print').onclick = app.print;
