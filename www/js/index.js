@@ -32,21 +32,16 @@ var app = {
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
+    onDeviceReady: function() { alert();
         app.receivedEvent('deviceready');
-		alert();
-				cordova.plugins.zbtprinter.find(function(mac) { 
-				alert(mac); 
-			}, function(fail) { 
-				alert(fail); 
-			}
-		);
+		
+		
         document.getElementById('check').onclick = app.check;
         document.getElementById('pick').onclick = app.pick;
         document.getElementById('print').onclick = app.print;
     },
     // Update DOM on a Received Event
-    receivedEvent: function(id) {
+    receivedEvent: function(id) { alert(2);
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
