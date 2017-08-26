@@ -35,36 +35,12 @@ var app = {
     onDeviceReady: function() { 
 	
 	
-	var printer = cordova.plugins.GodexPrinter;
-  printer.connectBT ('MX30',function () {
-    $scope.connBT = 'Conexion correcta.';
-    var sc = printer.sendCommand;
-      sc('^Q100,0,0');
-      sc('^W72');
-      sc('^H16');
-      sc('^P1');
-      sc('^S2');
-      sc('^AD');
-      sc('^C1');
-      sc('^R0');
-      sc('~Q+0');
-      sc('^O0');
-      sc('^D0');
-      sc('^E10');
-      sc('~R200');
-      sc('^XSET,ROTATION,0');
-      sc('^L');
-      sc('AE,37,40,1,1,0,0E,Text Title Example.');
-      sc('AB,77,86,1,1,0,0,other text example');
-      sc('E', function (msg) {
-              alert(msg);console.log(msg);
-              printer.disconnectBT();
-            }, function (err){
-              alert(err);
-            });
-    }, function (err){
-     alert(err);
-    });  
+	cordova.plugins.zbtprinter.find(function(mac) { 
+        alert(mac); 
+    }, function(fail) { 
+        alert(fail); 
+    }
+);
         app.receivedEvent('deviceready');
 		
 		
