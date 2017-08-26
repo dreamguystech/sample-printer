@@ -10,5 +10,5 @@
     <content src="index.html" />
     <access origin="*" />
 	
-	<gap:plugin name="de.appplant.cordova.plugin.printer" version="0.7.0" />
+	<gap:plugin name="de.appplant.cordova.plugin.printer" />
 </widget>
