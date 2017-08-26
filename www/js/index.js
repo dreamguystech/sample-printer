@@ -34,6 +34,12 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+		alert();
+		cordova.plugins.printer.isAvailable(
+				function (isAvailable) {
+					alert(isAvailable ? 'Service is available' : 'Service NOT available');
+				}
+			);
         document.getElementById('check').onclick = app.check;
         document.getElementById('pick').onclick = app.pick;
         document.getElementById('print').onclick = app.print;
