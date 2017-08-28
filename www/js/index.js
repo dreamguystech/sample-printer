@@ -32,24 +32,14 @@ var app = {
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function() { 
-	
-	
-	cordova.plugins.zbtprinter.find(function(mac) { 
-        alert(mac); 
-    }, function(fail) { 
-        alert(fail); 
-    }
-);
+    onDeviceReady: function() {
         app.receivedEvent('deviceready');
-		
-		
         document.getElementById('check').onclick = app.check;
         document.getElementById('pick').onclick = app.pick;
         document.getElementById('print').onclick = app.print;
     },
     // Update DOM on a Received Event
-    receivedEvent: function(id) { 
+    receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
@@ -60,7 +50,7 @@ var app = {
         console.log('Received Event: ' + id);
     },
     // Check for available printer or support in general
-    check: function () { 
+    check: function () {
         cordova.plugins.printer.isAvailable(function (avail, count) {
             alert(avail ? 'Found ' + count + ' services' : 'No');
         });
@@ -75,7 +65,7 @@ var app = {
     // Picked printer
     printerId: null,
     // Print sample content
-    print: function () { 
+    print: function () {
         var options = { name: 'awesome', printerId: app.printerId },
             page    = '';
 
