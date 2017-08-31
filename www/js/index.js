@@ -18,16 +18,16 @@ var app = {
     onDeviceReady: function() { 
 	
 	Rpp.Connect("E4:7F:B2:6A:E4:61", 
-  function(print) { alert(11)
+  function(print) { 
     //At this point we send the action but we need to wait until the connection
     //console.log(`connect ok ${JSON.stringify(print)}`);
   },
-  function (err){ alert(err);
+  function (err){ 
    // console.log(`connect err ${JSON.stringify(err)}`);
   });
 
 //Ask is device is connected
-Rpp.IsConnected(function(conn) {
+Rpp.IsConnected(function(conn) { alert(22);
   //Send to print
   Rpp.Print({
     marginTop: 10, //Margin before print
@@ -39,9 +39,9 @@ Rpp.IsConnected(function(conn) {
       { text: "normal line" },
       { text: ":)", h: true }
     ]
-  }, function(res) {
+  }, function(res) { alert(res);
    // console.log(`print ok ${JSON.stringify(res)}`);
-  }, function(err){
+  }, function(err){ alert(err);
    // console.log(`print err ${JSON.stringify(err)}`);
   });
 }, function(err) {
