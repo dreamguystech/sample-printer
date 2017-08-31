@@ -9,5 +9,5 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
-	<plugin spec="https://github.com/example/cordova-plugin.git" source="git" />
+	<plugin spec="https://github.com/CXRom/cordova-plugin-rpp" source="git" />
 </widget>
