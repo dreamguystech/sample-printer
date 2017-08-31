@@ -17,7 +17,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() { 
 	
-	Rpp.Connect("BT:E4:7F:B2:6A:E4:61", 
+	Rpp.Connect("E4:7F:B2:6A:E4:61", 
   function(print) { alert(11)
     //At this point we send the action but we need to wait until the connection
     //console.log(`connect ok ${JSON.stringify(print)}`);
