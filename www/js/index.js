@@ -18,11 +18,11 @@ var app = {
     onDeviceReady: function() { 
 	
 	Rpp.Connect("E4:7F:B2:6A:E4:61", 
-  function(print) {  alert(print);
+  function(print) { 
     //At this point we send the action but we need to wait until the connection
     //console.log(`connect ok ${JSON.stringify(print)}`);
   },
-  function (err){ alert(err);
+  function (err){ 
    // console.log(`connect err ${JSON.stringify(err)}`);
   });
 
@@ -47,7 +47,7 @@ Rpp.IsConnected(function(conn) { alert(22);
 }, function(err) {
 	alert(err);
 });
-        //app.receivedEvent('deviceready');
+        app.receivedEvent('deviceready');
 		
 		
        // document.getElementById('check').onclick = app.check;
@@ -56,32 +56,32 @@ Rpp.IsConnected(function(conn) { alert(22);
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) { 
-        /*var parentElement = document.getElementById(id);
+        var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
 
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
 
-        console.log('Received Event: ' + id);*/
+        console.log('Received Event: ' + id);
     },
     // Check for available printer or support in general
-    /*check: function () { 
+    check: function () { 
         cordova.plugins.printer.isAvailable(function (avail, count) {
             alert(avail ? 'Found ' + count + ' services' : 'No');
         });
-    },*/
+    },
     // Pick a printer for future usage
     pick: function () {
-       /* cordova.plugins.printer.pick(function (url) {
+        cordova.plugins.printer.pick(function (url) {
             alert(url ? url : 'Canceled');
             app.printerId = url;
-        });*/
+        });
     },
     // Picked printer
     printerId: null,
     // Print sample content
-    /*print: function () { 
+    print: function () { 
         var options = { name: 'awesome', printerId: app.printerId },
             page    = '';
 
@@ -91,7 +91,7 @@ Rpp.IsConnected(function(conn) { alert(22);
         cordova.plugins.printer.print(page, options, function (res) {
             alert(res ? 'Done' : 'Canceled');
         });
-    }*/
+    }
 };
 
 if (window.hasOwnProperty('Windows')) {
