@@ -45,14 +45,14 @@ Rpp.IsConnected(function(conn) { alert(22);
    // console.log(`print err ${JSON.stringify(err)}`);
   });
 }, function(err) {
-
+	alert(err);
 });
-        app.receivedEvent('deviceready');
+        //app.receivedEvent('deviceready');
 		
 		
-        document.getElementById('check').onclick = app.check;
-        document.getElementById('pick').onclick = app.pick;
-        document.getElementById('print').onclick = app.print;
+       // document.getElementById('check').onclick = app.check;
+       // document.getElementById('pick').onclick = app.pick;
+        //document.getElementById('print').onclick = app.print;
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) { 
