@@ -18,7 +18,7 @@ var app = {
     onDeviceReady: function() { 
 	
 	Rpp.Connect("E4:7F:B2:6A:E4:61", 
-  function(print) { 
+  function(print) { alert(print); 
     //At this point we send the action but we need to wait until the connection
     //console.log(`connect ok ${JSON.stringify(print)}`);
   },
@@ -50,9 +50,9 @@ Rpp.IsConnected(function(conn) { alert(22);
         app.receivedEvent('deviceready');
 		
 		
-       // document.getElementById('check').onclick = app.check;
-       // document.getElementById('pick').onclick = app.pick;
-        //document.getElementById('print').onclick = app.print;
+       document.getElementById('check').onclick = app.check;
+       document.getElementById('pick').onclick = app.pick;
+       document.getElementById('print').onclick = app.print;
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) { 
