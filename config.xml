@@ -9,6 +9,5 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
-	<!--<plugin spec="https://github.com/srehanuddin/Cordova-Plugin-Bluetooth-Printer.git" source="git" />-->
-	<plugin name="com.somidata.cordova.starioadapterprint" spec="1.0.1" source="pgb" />
+	<plugin spec="https://github.com/don/BluetoothSerial.git" source="git" />
 </widget>
