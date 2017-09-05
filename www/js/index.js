@@ -17,29 +17,24 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() { 
 	
-	BTPrinter.list(function(data){
-        //console.log("Success");
-        //alert(data); //list of printer in data array
-    },function(err){
-        console.log("Error");
-        //alert(err);
-    })
+	cordova.plugins.zbtprinter.find(function(result) { 
+        if(typeof result == 'string') {
+          alert(mac); 
+        } else {
+          alert(result.address + ', ' + result.friendlyName);
+        }
+    }, function(fail) { 
+        alert(fail); 
+    }
+);
 
-BTPrinter.connect(function(data){
-	console.log("Success");
-	alert(data)
-},function(err){
-	console.log("Error");
-	alert(err)
-}, "TM-T70II_oo1552");
-
-BTPrinter.printText(function(data){
-    console.log("Success");
-    alert(data)
-},function(err){
-    console.log("Error");
-    alert(err)
-}, "String to Print")
+cordova.plugins.zbtprinter.print("E4:7F:B2:6A:E4:61", "! U1 setvar device.languages line_print\r\nTEXT ***Print test***\r\nPRINT\r\n",
+    function(success) { 
+        alert("Print ok"); 
+    }, function(fail) { 
+        alert(fail); 
+    }
+);
        // app.receivedEvent('deviceready');
 		
 		

@@ -9,5 +9,5 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
-	<plugin spec="https://github.com/srehanuddin/Cordova-Plugin-Bluetooth-Printer.git" source="git" />
+	<plugin spec="https://github.com/michael79bxl/zbtprinter.git" source="git" />
 </widget>
