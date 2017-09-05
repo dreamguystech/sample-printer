@@ -17,24 +17,54 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() { 
 	
-	cordova.plugins.zbtprinter.find(function(result) { 
-        if(typeof result == 'string') {
-          alert(mac); 
-        } else {
-          alert(result.address + ', ' + result.friendlyName);
-        }
-    }, function(fail) { 
-        alert(fail); 
-    }
+	window.DatecsPrinter.listBluetoothDevices(
+  function (devices) {
+    window.DatecsPrinter.connect(devices[0].address, 
+      function() {
+        printSomeTestText();
+      },
+      function() {
+        alert(JSON.stringify(error));
+      }
+    );
+  },
+  function (error) {
+    alert(JSON.stringify(error));
+  }
 );
 
-cordova.plugins.zbtprinter.print("E4:7F:B2:6A:E4:61", "! U1 setvar device.languages line_print\r\nTEXT ***Print test***\r\nPRINT\r\n",
-    function(success) { 
-        alert("Print ok"); 
-    }, function(fail) { 
-        alert(fail); 
+function printSomeTestText() {
+  window.DatecsPrinter.printText("Print Test!", 'ISO-8859-1', 
+    function() {
+      printMyImage();
     }
-);
+  );
+}
+
+function printMyImage() {
+  var image = new Image();
+  image.src = 'img/some_image.jpg';
+  image.onload = function() {
+      var canvas = document.createElement('canvas');
+      canvas.height = 100;
+      canvas.width = 100;
+      var context = canvas.getContext('2d');
+      context.drawImage(image, 0, 0);
+      var imageData = canvas.toDataURL('image/jpeg').replace(/^data:image\/(png|jpg|jpeg);base64,/, ""); //remove mimetype
+      window.DatecsPrinter.printImage(
+          imageData, //base64
+          canvas.width, 
+          canvas.height, 
+          1, 
+          function() {
+            printMyBarcode();
+          },
+          function(error) {
+              alert(JSON.stringify(error));
+          }
+      )
+  };
+}
        // app.receivedEvent('deviceready');
 		
 		
