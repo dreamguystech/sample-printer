@@ -15,21 +15,15 @@ var app = {
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function() { alert('DR')
-	cordova.plugins.zbtprinter.find(function(mac) { 
-        alert(mac); 
-    }, function(fail) { 
-        alert(fail); 
-    }
-);
-
-cordova.plugins.zbtprinter.print("E4:7F:B2:6A:E4:61", "! U1 setvar 'device.languages' 'line_print'\r\nTEXT ***Print test***\r\nPRINT\r\n",
-    function(success) { 
-        alert("Print ok"); 
-    }, function(fail) { 
-        alert(fail); 
-    }
-);
+    onDeviceReady: function() { 
+	
+	BTPrinter.list(function(data){
+        console.log("Success");
+        alert(data); //list of printer in data array
+    },function(err){
+        console.log("Error");
+        alert(err);
+    })
 	
        // app.receivedEvent('deviceready');
 		
