@@ -39,7 +39,15 @@ BTPrinter.printText(function(data){
 },function(err){
     console.log("Error");
     alert(err)
-}, "String to Print")
+}, "demo print");
+
+BTPrinter.printPOSCommand(function(data){
+    console.log("Success");
+    alert(data)
+},function(err){
+    console.log("Error");
+    alert(err)
+}, "0C")
 	
        // app.receivedEvent('deviceready');
 		
