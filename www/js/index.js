@@ -31,7 +31,7 @@ BTPrinter.connect(function(data){
 },function(err){
 	console.log("Error");
 	alert(err)
-}, "PrinterName");
+}, "TM-T70II_oo1552");
 
 BTPrinter.printText(function(data){
     console.log("Success");
