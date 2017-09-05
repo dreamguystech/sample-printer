@@ -16,13 +16,7 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() { 
-	BTPrinter.list(function(data){
-        console.log("Success");
-        alert(data); //list of printer in data array
-    },function(err){
-        console.log("Error");
-        alert(err);
-    })
+	
 	
        // app.receivedEvent('deviceready');
 		

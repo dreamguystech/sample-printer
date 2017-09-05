@@ -13,7 +13,7 @@
     <body>
         <div class="app">
             <h1>Printer Plugin</h1>
-            <div id="deviceready" class="blink">
+            <!--<div id="deviceready" class="blink">
                 <p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p>
             </div>
@@ -21,10 +21,44 @@
                 <a id="check" href="#" class="button grey">Check</a>
                 <a id="pick" href="#" class="button grey">Pick</a>
                 <a id="print" href="#" class="button orange">Print</a>
-            </div>
+            </div>-->
+            
+            <button id="testco" type="button">Test Connect</button>
+<button id="listnwrite" type="button">List & Write</button>
+<button id="insecure" type="button">Insecure connect</button>
+<button id="deco" type="button">Disconnect bluetooth</button>
         </div>
         
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        
+        <script>
+			$(document).ready(function() {
+
+    $("#testco").click(function() {
+        bluetoothSerial.connect("E4:7F:B2:6A:E4:61", connectSuccess, connectFailure);
+    });
+
+    $("#listnwrite").click(function() {
+        bluetoothSerial.list(function(devices) {
+            devices.forEach(function(device) {
+                var data = "something \n";
+                alert(device.address);
+                bluetoothSerial.connect(device.address, connectSuccess, connectFailure);
+                bluetoothSerial.write(data, success, failure);
+            })
+        }, connectFailure);
+    });
+
+    $("#insecure").click(function() {
+        bluetoothSerial.connectInsecure("E4:7F:B2:6A:E4:61", connectSuccess, connectFailure);
+    });
+
+    $("#deco").click(function() {
+        bluetoothSerial.disconnect(sucessdeco, faildeco);
+    });
+
+});
+		</script>
     </body>
 </html>
