@@ -16,7 +16,20 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() { 
-	
+	var chosenPrinter = null;
+ 
+    window.plugin.printer.getAvailablePriners(function(printers) {
+        alert('found printers: ', printers);
+        chosenPrinter = printers[0];
+    }, function(error) {
+        calert(error);
+    });
+ 
+    window.plugin.printer.print('content', chosenPrinter, function() {
+        alert('documend is send to print');
+    }, function(error) {
+        alert(error);
+    });
 	
        // app.receivedEvent('deviceready');
 		
