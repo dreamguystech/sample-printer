@@ -9,5 +9,8 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
-	<plugin spec="https://github.com/giorgiofellipe/cordova-plugin-datecs-printer" source="git" />
+	<plugin spec="https://github.com/srehanuddin/Cordova-Plugin-Bluetooth-Printer.git" source="git" />
+	<uses-permission android:name="android.permission.BLUETOOTH" />
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 </widget>

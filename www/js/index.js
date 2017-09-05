@@ -16,55 +16,14 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() { 
+	BTPrinter.list(function(data){
+        console.log("Success");
+        alert(data); //list of printer in data array
+    },function(err){
+        console.log("Error");
+        alert(err);
+    })
 	
-	window.DatecsPrinter.listBluetoothDevices(
-  function (devices) {
-    window.DatecsPrinter.connect(devices[0].address, 
-      function() {
-        printSomeTestText();
-      },
-      function() {
-        alert(JSON.stringify(error));
-      }
-    );
-  },
-  function (error) {
-    alert(JSON.stringify(error));
-  }
-);
-
-function printSomeTestText() {
-  window.DatecsPrinter.printText("Print Test!", 'ISO-8859-1', 
-    function() {
-      printMyImage();
-    }
-  );
-}
-
-function printMyImage() {
-  var image = new Image();
-  image.src = 'img/some_image.jpg';
-  image.onload = function() {
-      var canvas = document.createElement('canvas');
-      canvas.height = 100;
-      canvas.width = 100;
-      var context = canvas.getContext('2d');
-      context.drawImage(image, 0, 0);
-      var imageData = canvas.toDataURL('image/jpeg').replace(/^data:image\/(png|jpg|jpeg);base64,/, ""); //remove mimetype
-      window.DatecsPrinter.printImage(
-          imageData, //base64
-          canvas.width, 
-          canvas.height, 
-          1, 
-          function() {
-            printMyBarcode();
-          },
-          function(error) {
-              alert(JSON.stringify(error));
-          }
-      )
-  };
-}
        // app.receivedEvent('deviceready');
 		
 		
