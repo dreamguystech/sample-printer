@@ -27,11 +27,19 @@ var app = {
 	
 	BTPrinter.connect(function(data){
 	console.log("Success");
-	alert(data)
+	alert("con"+data)
 },function(err){
 	console.log("Error");
 	alert(err)
-}, "TM-T70II_001552")
+}, "TM-T70II_001552");
+
+BTPrinter.printText(function(data){
+    console.log("Success");
+    alert("p"+data)
+},function(err){
+    console.log("Error");
+    alert(err)
+}, "String to Print")
 	
        // app.receivedEvent('deviceready');
 		
