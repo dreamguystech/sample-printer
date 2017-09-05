@@ -17,42 +17,20 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() { 
 	
-	Rpp.Connect("E4:7F:B2:6A:E4:61", 
-  function(print) { alert(print); 
-    //At this point we send the action but we need to wait until the connection
-    //console.log(`connect ok ${JSON.stringify(print)}`);
-  },
-  function (err){ 
-   // console.log(`connect err ${JSON.stringify(err)}`);
-  });
+	BTPrinter.list(function(data){
+        //console.log("Success");
+        alert(data); //list of printer in data array
+    },function(err){
+        console.log("Error");
+        alert(err);
+    })
 
-//Ask is device is connected
-Rpp.IsConnected(function(conn) { alert(22);
-  //Send to print
-  Rpp.Print({
-    marginTop: 10, //Margin before print
-    marginBottom: 10, //Margin after print
-    lineSpacing: 50, //Size of line
-    lines: [ //Lines to print
-      { text: "Title", align: 1, bold: true, underline: true, size: 17 }, //long name properties
-      { text: "Subtitle", a: 1, b: true, u: true, s: 17 }, //short name properties
-      { text: "normal line" },
-      { text: ":)", h: true }
-    ]
-  }, function(res) { alert(res);
-   // console.log(`print ok ${JSON.stringify(res)}`);
-  }, function(err){ alert(err);
-   // console.log(`print err ${JSON.stringify(err)}`);
-  });
-}, function(err) {
-	alert(err);
-});
-        app.receivedEvent('deviceready');
+       // app.receivedEvent('deviceready');
 		
 		
-       document.getElementById('check').onclick = app.check;
-       document.getElementById('pick').onclick = app.pick;
-       document.getElementById('print').onclick = app.print;
+      // document.getElementById('check').onclick = app.check;
+      // document.getElementById('pick').onclick = app.pick;
+      // document.getElementById('print').onclick = app.print;
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) { 
