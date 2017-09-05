@@ -19,12 +19,27 @@ var app = {
 	
 	BTPrinter.list(function(data){
         //console.log("Success");
-        alert(data); //list of printer in data array
+        //alert(data); //list of printer in data array
     },function(err){
         console.log("Error");
-        alert(err);
+        //alert(err);
     })
 
+BTPrinter.connect(function(data){
+	console.log("Success");
+	alert(data)
+},function(err){
+	console.log("Error");
+	alert(err)
+}, "PrinterName");
+
+BTPrinter.printText(function(data){
+    console.log("Success");
+    alert(data)
+},function(err){
+    console.log("Error");
+    alert(err)
+}, "String to Print")
        // app.receivedEvent('deviceready');
 		
 		
