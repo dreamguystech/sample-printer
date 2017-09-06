@@ -61,7 +61,7 @@
       }
       return d;
     }
-    this.startScan = function () { console.log(22);
+    this.startScan = function () { 
       var d = '';
       if (ionic.Platform.isIOS()) {
         ble.startScan([], function (device) {
@@ -71,8 +71,8 @@
         });
       } else if (ionic.Platform.isAndroid()) {
         bluetoothSerial.setDeviceDiscoveredListener(function (device) {
-			console.log(device);
-			 alert(device.join("+++")); alert(device['deviceId']);
+			
+			 alert(device.name); alert(device.id);
           d = device;
         });
         bluetoothSerial.discoverUnpaired(function (devices) {
@@ -181,7 +181,7 @@
       });*/
 	  bluetoothDevices = new Array();
    		var devics = bt.startScan()
-	alert(devics);
+	alert(devics[0].id);
 	//alert(devics.deviceId);
         //app.receivedEvent('deviceready');
 		
