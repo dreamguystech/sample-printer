@@ -72,9 +72,9 @@ var bluetooth = function ($q, $window) {
         d.resolve(false);
       }
       if (ionic.Platform.isIOS()) {
-        $window.ble.isConnected(deviceId, successCallback, errorCallback);
+        ble.isConnected(deviceId, successCallback, errorCallback);
       } else if (ionic.Platform.isAndroid()) {
-        $window.bluetoothSerial.isConnected(successCallback, errorCallback);
+        bluetoothSerial.isConnected(successCallback, errorCallback);
       }
       return d.promise;
     }
@@ -87,8 +87,8 @@ var bluetooth = function ($q, $window) {
         d.notify({ status: "disconnected" });
       }
       if (ionic.Platform.isIOS()) {
-        $window.ble.stopScan(null, null);
-        $window.ble.connect(deviceId, function (deviceInfo) {
+        ble.stopScan(null, null);
+        ble.connect(deviceId, function (deviceInfo) {
           for (var index = 0; index < deviceInfo.services.length; index++) {
             var service = deviceInfo.services[index];
             if (service == serviceUUID) {
@@ -100,7 +100,7 @@ var bluetooth = function ($q, $window) {
         }, errorCallback);
       } else {
         // without bond
-        $window.bluetoothSerial.connectInsecure(deviceId, successCallback, errorCallback);
+        bluetoothSerial.connectInsecure(deviceId, successCallback, errorCallback);
       }
       return d.promise;
     }
@@ -137,7 +137,7 @@ var bluetooth = function ($q, $window) {
   };
   var bt = new bluetooth(0);
   if(!bt.isEnabled()){
-	  bt.enable();
+	  alert(bt.enable());
   }
   /*bt.isEnabled()
       .then(function (isEnabled) {
