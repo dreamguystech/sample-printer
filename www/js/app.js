@@ -3,7 +3,7 @@ var bluetooth = function ($q, $window) {
     var serviceUUID = "49535343-FE7D-4AE5-8FA9-9FAFD205E455";// IOS ONLY
     var writeCharacteristic = "49535343-8841-43F4-A8D4-ECBE34729BB3"; //IOS ONLY
     var readCharacteristic = "49535343-1E4D-4BD9-BA61-23C647249616"; //IOS ONLY
-    this.isEnabled = function () {
+    this.isEnabled = function () { alert('enb');
       var d = $q.defer();
       function successCallback(success) {
         d.resolve(true);
