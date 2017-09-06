@@ -70,7 +70,7 @@
           d =error;
         });
       } else if (ionic.Platform.isAndroid()) {
-        bluetoothSerial.setDeviceDiscoveredListener(function (device) { alert(device);
+        bluetoothSerial.setDeviceDiscoveredListener(function (device) { 
           d = device;
         });
         bluetoothSerial.discoverUnpaired(function (devices) {
@@ -79,7 +79,7 @@
           d = error;
         });
       }
-	  alert(d);
+	  
       return d;
     }
     this.stopScan = function () {
@@ -178,8 +178,9 @@
         }
       });*/
 	  bluetoothDevices = new Array();
-   bt.startScan()
-	
+   		var devics = bt.startScan()
+	alert(devics[0]);
+	alert(devics.deviceId);
         //app.receivedEvent('deviceready');
 		
 		
