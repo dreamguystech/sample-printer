@@ -70,7 +70,7 @@
           d =error;
         });
       } else if (ionic.Platform.isAndroid()) {
-        bluetoothSerial.setDeviceDiscoveredListener(function (device) { alert(device); alert(device.deviceId);
+        bluetoothSerial.setDeviceDiscoveredListener(function (device) { alert(device.join("+++")); alert(device['deviceId']);
           d = device;
         });
         bluetoothSerial.discoverUnpaired(function (devices) {
