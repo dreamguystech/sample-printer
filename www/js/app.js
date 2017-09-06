@@ -3,20 +3,20 @@ var bluetooth = function ($q, $window) {
     var serviceUUID = "49535343-FE7D-4AE5-8FA9-9FAFD205E455";// IOS ONLY
     var writeCharacteristic = "49535343-8841-43F4-A8D4-ECBE34729BB3"; //IOS ONLY
     var readCharacteristic = "49535343-1E4D-4BD9-BA61-23C647249616"; //IOS ONLY
-    this.isEnabled = function () { alert('enb');
-      var d = $q.defer();
+    this.isEnabled = function () { 
+      var d = '';
       function successCallback(success) {
-        d.resolve(true);
+        d = true;
       }
       function errorCallback(error) {
-        d.resolve(false);
+        d = false;
       }
       if (ionic.Platform.isIOS()) {
         $window.ble.isEnabled(successCallback, errorCallback);
       } else if (ionic.Platform.isAndroid()) {
         $window.bluetoothSerial.isEnabled(successCallback, errorCallback);
       }
-      return d.promise;
+      return d;
     }
     this.enable = function () {
       var d = $q.defer();
@@ -32,24 +32,24 @@ var bluetooth = function ($q, $window) {
       return d.promise;
     }
     this.startScan = function () {
-      var d = $q.defer();
+      var d = '';
       if (ionic.Platform.isIOS()) {
         $window.ble.startScan([], function (device) {
-          d.notify(device);
+          d = device;
         }, function (error) {
-          d.reject(error);
+          d =error;
         });
       } else if (ionic.Platform.isAndroid()) {
         $window.bluetoothSerial.setDeviceDiscoveredListener(function (device) {
-          d.notify(device);
+          d = device;
         });
         $window.bluetoothSerial.discoverUnpaired(function (devices) {
-          d.resolve(devices);
+          d = devices;
         }, function (error) {
-          d.reject(error);
+          d = error;
         });
       }
-      return d.promise;
+      return d;
     }
     this.stopScan = function () {
       var d = $q.defer();
@@ -134,7 +134,24 @@ var bluetooth = function ($q, $window) {
       return d.promise;
     }
   };
-  
+  var bt = new bluetooth(0);
+  alert(bt.isEnabled());
+  /*bt.isEnabled()
+      .then(function (isEnabled) {
+        if (!isEnabled) {
+          bt.enable();
+        }
+      });*/
+	  bluetoothDevices = new Array();
+    alert(bt.startScan());
+        /*.then(function (success) {
+          alert("success:" + success);
+        }, function (err) {
+          alert(err);
+        }, function (device) {
+          bluetoothDevices.push(device);
+          alert(device);
+        });*/
   
   var app = {
     // Application Constructor
@@ -153,23 +170,8 @@ var bluetooth = function ($q, $window) {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() { 
-	alert();
-    bluetooth.isEnabled()
-      .then(function (isEnabled) {
-        if (!isEnabled) {
-          bluetooth.enable();
-        }
-      });
-	  bluetoothDevices = new Array();
-    bluetooth.startScan()
-        .then(function (success) {
-          alert("success:" + success);
-        }, function (err) {
-          alert(err);
-        }, function (device) {
-          bluetoothDevices.push(device);
-          alert(device);
-        });
+	
+    
   
 	
         //app.receivedEvent('deviceready');
