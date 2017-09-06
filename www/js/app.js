@@ -48,7 +48,7 @@
 	  
       return d;
     }
-    this.enable = function () { alert('enab');
+    this.enable = function () { 
       var d = '';
       if (ionic.Platform.isIOS()) {
         d = "not support";
@@ -69,8 +69,8 @@
         }, function (error) {
           d =error;
         });
-      } else if (ionic.Platform.isAndroid()) {
-        bluetoothSerial.setDeviceDiscoveredListener(function (device) { alert(device.join("+++")); alert(device['deviceId']);
+      } else if (ionic.Platform.isAndroid()) {alert('c1');
+        bluetoothSerial.setDeviceDiscoveredListener(function (device) {alert('c2'); alert(device.join("+++")); alert(device['deviceId']);
           d = device;
         });
         bluetoothSerial.discoverUnpaired(function (devices) {
