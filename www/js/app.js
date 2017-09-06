@@ -16,6 +16,7 @@ var bluetooth = function ($q, $window) {
       } else if (ionic.Platform.isAndroid()) { alert(ionic.Platform.isAndroid());
         bluetoothSerial.isEnabled(successCallback, errorCallback);
       }
+	  
       return d;
     }
     this.enable = function () {
