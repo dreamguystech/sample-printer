@@ -19,7 +19,7 @@ var bluetooth = function ($q, $window) {
 	  alert(d);
       return d;
     }
-    this.enable = function () { alert('enl');
+    this.enable = function () { alert('enab');
       var d = '';
       if (ionic.Platform.isIOS()) {
         d = "not support";
