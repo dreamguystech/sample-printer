@@ -71,8 +71,7 @@
         });
       } else if (ionic.Platform.isAndroid()) {
         bluetoothSerial.setDeviceDiscoveredListener(function (device) {
-			
-			 alert(device.name); alert(device.id);
+		
           d = device;
         });
         bluetoothSerial.discoverUnpaired(function (devices) {
@@ -181,7 +180,8 @@
       });*/
 	  bluetoothDevices = new Array();
    		var devics = bt.startScan()
-	alert(devics[0].id);
+	alert(devics.length);
+	alert(devics[0].name+"++"+devics[0].id);
 	//alert(devics.deviceId);
         //app.receivedEvent('deviceready');
 		
