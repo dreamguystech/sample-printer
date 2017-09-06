@@ -12,9 +12,9 @@ var bluetooth = function ($q, $window) {
         d = false;
       }
       if (ionic.Platform.isIOS()) {
-        $window.ble.isEnabled(successCallback, errorCallback);
+        ble.isEnabled(successCallback, errorCallback);
       } else if (ionic.Platform.isAndroid()) { alert(ionic.Platform.isAndroid());
-        $window.bluetoothSerial.isEnabled(successCallback, errorCallback);
+        bluetoothSerial.isEnabled(successCallback, errorCallback);
       }
       return d;
     }
