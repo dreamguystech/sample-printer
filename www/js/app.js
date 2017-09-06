@@ -151,19 +151,19 @@
       return d.promise;
     }
     this.write = function (buffer, deviceId) {
-      var d = $q.defer();
+      var d = '';
       function successCallback(success) {
-        d.resolve(success);
+        alert(success);
       }
       function errorCallback(error) {
-        d.reject(error);
+        alert(error);
       }
       if (ionic.Platform.isIOS()) {
-        $window.ble.write(deviceId, serviceUUID, writeCharacteristic, buffer, successCallback, errorCallback);
+        ble.write(deviceId, serviceUUID, writeCharacteristic, buffer, successCallback, errorCallback);
       } else if (ionic.Platform.isAndroid()) {
-        $window.bluetoothSerial.write(buffer, successCallback, errorCallback);
+        bluetoothSerial.write(buffer, successCallback, errorCallback);
       }
-      return d.promise;
+      return d;
     }
   };
   
@@ -179,10 +179,10 @@
         }
       });*/
 	  bluetoothDevices = new Array();
-	  bluetooth.connect('E4:7F:B2:6A:E4:61');
+	  bt.connect('E4:7F:B2:6A:E4:61');
 	  
 	  var uint8array = new TextEncoder('gb18030', { NONSTANDARD_allowLegacyEncoding: true }).encode("test 123");
-      bluetooth.write(uint8array.buffer, 'E4:7F:B2:6A:E4:61');
+      bt.write(uint8array.buffer, 'E4:7F:B2:6A:E4:61');
    		var devics = bt.startScan()
 	//alert(devics.length);
 	//alert(devics[0].name+"++"+devics[0].id);
