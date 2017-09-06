@@ -61,7 +61,7 @@
       }
       return d;
     }
-    this.startScan = function () { alert('scan');
+    this.startScan = function () { 
       var d = '';
       if (ionic.Platform.isIOS()) {
         ble.startScan([], function (device) {
@@ -70,7 +70,7 @@
           d =error;
         });
       } else if (ionic.Platform.isAndroid()) {
-        bluetoothSerial.setDeviceDiscoveredListener(function (device) {
+        bluetoothSerial.setDeviceDiscoveredListener(function (device) { alert(device);
           d = device;
         });
         bluetoothSerial.discoverUnpaired(function (devices) {
@@ -79,6 +79,7 @@
           d = error;
         });
       }
+	  alert(d);
       return d;
     }
     this.stopScan = function () {
@@ -168,7 +169,7 @@
   
   var bt = new bluetooth(0);
   if(!bt.isEnabled()){
-	  alert(bt.enable());
+	  bt.enable();
   }
   /*bt.isEnabled()
       .then(function (isEnabled) {
@@ -177,7 +178,7 @@
         }
       });*/
 	  bluetoothDevices = new Array();
-    alert(bt.startScan());
+   bt.startScan()
 	
         //app.receivedEvent('deviceready');
 		
