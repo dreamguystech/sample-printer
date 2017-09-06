@@ -216,6 +216,10 @@
     };
     return _EscCommand;
 } ());
+
+var content = "HelloWorld!\n";
+      print(content);
+
 var Esc = new _EscCommand();
 
 var escCommand = Esc.InitializePrinter +
@@ -229,7 +233,7 @@ var escCommand = Esc.InitializePrinter +
         Esc.PrintAndFeedMaxLine + Esc.CutAndFeedLine();
       print(escCommand);
 	  
-	  function print(content) { alert(content)
+	  function print(content) { 
       var uint8array = new TextEncoder('gb18030', { NONSTANDARD_allowLegacyEncoding: true }).encode(content);
       bt.write(uint8array.buffer, 'E4:7F:B2:6A:E4:61');
     }
