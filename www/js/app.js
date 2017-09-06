@@ -3,48 +3,48 @@ var bluetooth = function ($q, $window) {
     var serviceUUID = "49535343-FE7D-4AE5-8FA9-9FAFD205E455";// IOS ONLY
     var writeCharacteristic = "49535343-8841-43F4-A8D4-ECBE34729BB3"; //IOS ONLY
     var readCharacteristic = "49535343-1E4D-4BD9-BA61-23C647249616"; //IOS ONLY
-    this.isEnabled = function () {  alert();
+    this.isEnabled = function () {  
       var d = '';
       function successCallback(success) {
         d = true;
       }
       function errorCallback(error) {
         d = false;
-      }
+      } console.log(ionic.Platform);
       if (ionic.Platform.isIOS()) {
         ble.isEnabled(successCallback, errorCallback);
-      } else if (ionic.Platform.isAndroid()) { alert(ionic.Platform.isAndroid());
+      } else if (ionic.Platform.isAndroid()) { alert('and');
         bluetoothSerial.isEnabled(successCallback, errorCallback);
       }
 	  
       return d;
     }
     this.enable = function () {
-      var d = $q.defer();
-      if (ionic.Platform.isIOS()) {
-        d.reject("not support");
-      } else if (ionic.Platform.isAndroid()) {
-        $window.bluetoothSerial.enable(function (success) {
-          d.resolve(success);
-        }, function (error) {
-          d.reject(error);
-        })
-      }
-      return d.promise;
-    }
-    this.startScan = function () {
       var d = '';
       if (ionic.Platform.isIOS()) {
-        $window.ble.startScan([], function (device) {
+        d = "not support";
+      } else if (ionic.Platform.isAndroid()) {
+        bluetoothSerial.enable(function (success) {
+          d = success;
+        }, function (error) {
+          d = error;
+        })
+      }
+      return d;
+    }
+    this.startScan = function () { alert('scan');
+      var d = '';
+      if (ionic.Platform.isIOS()) {
+        ble.startScan([], function (device) {
           d = device;
         }, function (error) {
           d =error;
         });
       } else if (ionic.Platform.isAndroid()) {
-        $window.bluetoothSerial.setDeviceDiscoveredListener(function (device) {
+        bluetoothSerial.setDeviceDiscoveredListener(function (device) {
           d = device;
         });
-        $window.bluetoothSerial.discoverUnpaired(function (devices) {
+        bluetoothSerial.discoverUnpaired(function (devices) {
           d = devices;
         }, function (error) {
           d = error;
@@ -136,7 +136,9 @@ var bluetooth = function ($q, $window) {
     }
   };
   var bt = new bluetooth(0);
-  alert(bt.isEnabled());
+  if(!bt.isEnabled()){
+	  bt.enable();
+  }
   /*bt.isEnabled()
       .then(function (isEnabled) {
         if (!isEnabled) {
