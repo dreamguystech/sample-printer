@@ -1,4 +1,33 @@
-var bluetooth = function ($q, $window) {
+
+        /*.then(function (success) {
+          alert("success:" + success);
+        }, function (err) {
+          alert(err);
+        }, function (device) {
+          bluetoothDevices.push(device);
+          alert(device);
+        });*/
+  
+  var app = {
+    // Application Constructor
+    initialize: function() {
+        this.bindEvents();
+    },
+    // Bind Event Listeners
+    //
+    // Bind any events that are required on startup. Common events are:
+    // 'load', 'deviceready', 'offline', and 'online'.
+    bindEvents: function() {
+        document.addEventListener('deviceready', this.onDeviceReady, false);
+    },
+    // deviceready Event Handler
+    //
+    // The scope of 'this' is the event. In order to call the 'receivedEvent'
+    // function, we must explicitly call 'app.receivedEvent(...);'
+    onDeviceReady: function() { 
+	
+    
+  var bluetooth = function ($q, $window) {
     var _this = this;
     var serviceUUID = "49535343-FE7D-4AE5-8FA9-9FAFD205E455";// IOS ONLY
     var writeCharacteristic = "49535343-8841-43F4-A8D4-ECBE34729BB3"; //IOS ONLY
@@ -149,35 +178,6 @@ var bluetooth = function ($q, $window) {
       });*/
 	  bluetoothDevices = new Array();
     alert(bt.startScan());
-        /*.then(function (success) {
-          alert("success:" + success);
-        }, function (err) {
-          alert(err);
-        }, function (device) {
-          bluetoothDevices.push(device);
-          alert(device);
-        });*/
-  
-  var app = {
-    // Application Constructor
-    initialize: function() {
-        this.bindEvents();
-    },
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-    },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function() { 
-	
-    
-  
 	
         //app.receivedEvent('deviceready');
 		
