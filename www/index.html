@@ -24,7 +24,7 @@
     -->
 
     <!-- ionic/angularjs js -->
-    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <!--<script src="lib/ionic/js/ionic.bundle.js"></script>-->
 
     <!--encoding-text-->
     <script>window.TextEncoder = window.TextDecoder = null;</script>
@@ -40,19 +40,17 @@
     <script src="js/services.js"></script>
     <script src="js/commands.js"></script>-->
   </head>
-  <body ng-app="starter">
+  <body >
     <!--
       The nav bar that will be updated as we navigate between views.
     -->
-    <ion-nav-bar class="bar-stable">
-      <ion-nav-back-button>
-      </ion-nav-back-button>
-    </ion-nav-bar>
-    <!--
-      The views will be rendered in the <ion-nav-view> directive below
-      Templates are in the /templates folder (but you could also
-      have templates inline in this html file if you'd like).
-    -->
-    <ion-nav-view></ion-nav-view>
+    <ion-nav-view name="tab-bluetooth" class="view-container tab-content" nav-view="active" nav-view-transition="ios" nav-view-direction="swap" nav-swipe=""><ion-view view-title="Bluetooth" class="pane" state="tab.bluetooth" nav-view="active" style="opacity: 1; transform: translate3d(0%, 0px, 0px);">
+  <ion-content class="scroll-content ionic-scroll  has-header has-tabs"><div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);">
+    <div class="scroll-refresher invisible js-scrolling" collection-repeat-ignore="" pulling-text="refresh" on-refresh="refresh()" pulling-icon="ion-android-arrow-down"><div class="ionic-refresher-content ionic-refresher-with-text" ng-class="{'ionic-refresher-with-text': pullingText || refreshingText}" style=""><div class="icon-pulling" ng-class="{'pulling-rotation-disabled':disablePullingRotation}"><i class="icon ion-android-arrow-down"></i></div><div class="text-pulling ng-binding" ng-bind-html="pullingText">refresh</div><div class="icon-refreshing"><!-- ngIf: showSpinner --><ion-spinner ng-if="showSpinner" icon="" class="spinner spinner-ios" style=""><svg viewBox="0 0 64 64"><g stroke-width="4" stroke-linecap="round"><line y1="17" y2="29" transform="translate(32,32) rotate(180)"><animate attributeName="stroke-opacity" dur="750ms" values="1;.85;.7;.65;.55;.45;.35;.25;.15;.1;0;1" repeatCount="indefinite"/></line><line y1="17" y2="29" transform="translate(32,32) rotate(210)"><animate attributeName="stroke-opacity" dur="750ms" values="0;1;.85;.7;.65;.55;.45;.35;.25;.15;.1;0" repeatCount="indefinite"/></line><line y1="17" y2="29" transform="translate(32,32) rotate(240)"><animate attributeName="stroke-opacity" dur="750ms" values=".1;0;1;.85;.7;.65;.55;.45;.35;.25;.15;.1" repeatCount="indefinite"/></line><line y1="17" y2="29" transform="translate(32,32) rotate(270)"><animate attributeName="stroke-opacity" dur="750ms" values=".15;.1;0;1;.85;.7;.65;.55;.45;.35;.25;.15" repeatCount="indefinite"/></line><line y1="17" y2="29" transform="translate(32,32) rotate(300)"><animate attributeName="stroke-opacity" dur="750ms" values=".25;.15;.1;0;1;.85;.7;.65;.55;.45;.35;.25" repeatCount="indefinite"/></line><line y1="17" y2="29" transform="translate(32,32) rotate(330)"><animate attributeName="stroke-opacity" dur="750ms" values=".35;.25;.15;.1;0;1;.85;.7;.65;.55;.45;.35" repeatCount="indefinite"/></line><line y1="17" y2="29" transform="translate(32,32) rotate(0)"><animate attributeName="stroke-opacity" dur="750ms" values=".45;.35;.25;.15;.1;0;1;.85;.7;.65;.55;.45" repeatCount="indefinite"/></line><line y1="17" y2="29" transform="translate(32,32) rotate(30)"><animate attributeName="stroke-opacity" dur="750ms" values=".55;.45;.35;.25;.15;.1;0;1;.85;.7;.65;.55" repeatCount="indefinite"/></line><line y1="17" y2="29" transform="translate(32,32) rotate(60)"><animate attributeName="stroke-opacity" dur="750ms" values=".65;.55;.45;.35;.25;.15;.1;0;1;.85;.7;.65" repeatCount="indefinite"/></line><line y1="17" y2="29" transform="translate(32,32) rotate(90)"><animate attributeName="stroke-opacity" dur="750ms" values=".7;.65;.55;.45;.35;.25;.15;.1;0;1;.85;.7" repeatCount="indefinite"/></line><line y1="17" y2="29" transform="translate(32,32) rotate(120)"><animate attributeName="stroke-opacity" dur="750ms" values=".85;.7;.65;.55;.45;.35;.25;.15;.1;0;1;.85" repeatCount="indefinite"/></line><line y1="17" y2="29" transform="translate(32,32) rotate(150)"><animate attributeName="stroke-opacity" dur="750ms" values="1;.85;.7;.65;.55;.45;.35;.25;.15;.1;0;1" repeatCount="indefinite"/></line></g></svg></ion-spinner><!-- end ngIf: showSpinner --><!-- ngIf: showIcon --></div><div class="text-refreshing ng-binding" ng-bind-html="refreshingText"></div></div></div>
+    <ion-list class="disable-user-behavior"><div class="list">
+      <!-- ngRepeat: device in bluetoothDevices -->
+    </div></ion-list>
+  </div><div class="scroll-bar scroll-bar-v"><div class="scroll-bar-indicator scroll-bar-fade-out" style="transform: translate3d(0px, 0px, 0px) scaleY(1); height: 0px;"></div></div></ion-content>
+</ion-view></ion-nav-view>
   </body>
 </html>

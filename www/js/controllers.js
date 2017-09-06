@@ -70,12 +70,12 @@
       $scope.bluetoothDevices.splice(0, $scope.bluetoothDevices.length);
       bluetooth.startScan()
         .then(function (success) {
-          alert("success:" + angular.toJson(success));
+          console.log("success:" + angular.toJson(success));
         }, function (err) {
-          alert(err);
+          console.log(err);
         }, function (device) {
           $scope.bluetoothDevices.push(device);
-          alert(angular.toJson(device));
+          console.log(angular.toJson(device));
         })
         .finally(function () {
           // Stop the ion-refresher from spinning
