@@ -109,9 +109,9 @@
       }
       return d.promise;
     }
-    this.connect = function (deviceId) {alert(deviceId);
+    this.connect = function (deviceId) {
       var d = '';
-      function successCallback(success) { alert(success);
+      function successCallback(success) { 
         alert("connected");
       }
       function errorCallback(error) {
@@ -123,7 +123,7 @@
           for (var index = 0; index < deviceInfo.services.length; index++) {
             var service = deviceInfo.services[index];
             if (service == serviceUUID) {
-              alert("connected");
+              
               ble.startNotification(deviceId, serviceUUID, readCharacteristic, null, null);
               return;
             }
@@ -181,8 +181,58 @@
 	  bluetoothDevices = new Array();
 	  bt.connect('E4:7F:B2:6A:E4:61');
 	  
-	  var uint8array = new TextEncoder('gb18030', { NONSTANDARD_allowLegacyEncoding: true }).encode("test 123");
+	  var _EscCommand = (function () {
+    function _EscCommand() {
+        this.ESC = "\u001B";
+        this.GS = "\u001D";
+        this.InitializePrinter = this.ESC + "@";
+        this.BoldOn = this.ESC + "E" + "\u0001";
+        this.BoldOff = this.ESC + "E" + "\0";
+        this.DoubleHeight = this.GS + "!" + "\u0001";
+        this.DoubleWidth = this.GS + "!" + "\u0010";
+        this.DoubleOn = this.GS + "!" + "\u0011"; // 2x sized text (double-high + double-wide)
+        this.DoubleOff = this.GS + "!" + "\0";
+        this.PrintAndFeedMaxLine = this.ESC + "J" + "\u00FF"; // 打印并走纸 最大255
+        this.TextAlignLeft = this.ESC + "a" + "0";
+        this.TextAlignCenter = this.ESC + "a" + "1";
+        this.TextAlignRight = this.ESC + "a" + "2";
+    }
+    _EscCommand.prototype.PrintAndFeedLine = function (verticalUnit) {
+        if (verticalUnit > 255)
+            verticalUnit = 255;
+        if (verticalUnit < 0)
+            verticalUnit = 0;
+        return this.ESC + "J" + String.fromCharCode(verticalUnit);
+    };
+    _EscCommand.prototype.CutAndFeedLine = function (verticalUnit) {
+        if (verticalUnit === void 0) {
+            return this.ESC + "v" + 1;
+        }
+        if (verticalUnit > 255)
+            verticalUnit = 255;
+        if (verticalUnit < 0)
+            verticalUnit = 0;
+        return this.ESC + "V" + String.fromCharCode(verticalUnit);
+    };
+    return _EscCommand;
+} ());
+var Esc = new _EscCommand();
+
+var escCommand = Esc.InitializePrinter +
+        Esc.TextAlignRight + "HelloWorld!\n" +
+        Esc.TextAlignCenter + "HelloWorld!\n" +
+        Esc.TextAlignLeft + "HelloWorld!\n" +
+        Esc.BoldOn + "HelloWorld!\n" + Esc.BoldOff +
+        Esc.DoubleHeight + "HelloWorld!\n" + Esc.DoubleOff +
+        Esc.DoubleWidth + "HelloWorld!\n" + Esc.DoubleOff +
+        Esc.DoubleOn + "HelloWorld!\n" + Esc.DoubleOff +
+        Esc.PrintAndFeedMaxLine + Esc.CutAndFeedLine();
+      print(escCommand);
+	  
+	  function print(content) { alert(content)
+      var uint8array = new TextEncoder('gb18030', { NONSTANDARD_allowLegacyEncoding: true }).encode(content);
       bt.write(uint8array.buffer, 'E4:7F:B2:6A:E4:61');
+    }
    		var devics = bt.startScan()
 	//alert(devics.length);
 	//alert(devics[0].name+"++"+devics[0].id);
