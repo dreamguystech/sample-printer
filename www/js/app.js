@@ -110,12 +110,12 @@
       return d.promise;
     }
     this.connect = function (deviceId) {
-      var d = $q.defer();
-      function successCallback(success) {
-        d.notify({ status: "connected" });
+      var d = '';
+      function successCallback(success) { alert(success);
+        alert("connected");
       }
       function errorCallback(error) {
-        d.notify({ status: "disconnected" });
+        alert("disconnected");
       }
       if (ionic.Platform.isIOS()) {
         ble.stopScan(null, null);
@@ -123,8 +123,8 @@
           for (var index = 0; index < deviceInfo.services.length; index++) {
             var service = deviceInfo.services[index];
             if (service == serviceUUID) {
-              d.notify({ status: "connected" });
-              $window.ble.startNotification(deviceId, serviceUUID, readCharacteristic, null, null);
+              alert("connected");
+              ble.startNotification(deviceId, serviceUUID, readCharacteristic, null, null);
               return;
             }
           }
@@ -133,7 +133,7 @@
         // without bond
         bluetoothSerial.connectInsecure(deviceId, successCallback, errorCallback);
       }
-      return d.promise;
+      return d;
     }
     this.disconnect = function (deviceId) {
       var d = $q.defer();
@@ -179,9 +179,13 @@
         }
       });*/
 	  bluetoothDevices = new Array();
+	  bluetooth.connect('E4:7F:B2:6A:E4:61');
+	  
+	  var uint8array = new TextEncoder('gb18030', { NONSTANDARD_allowLegacyEncoding: true }).encode("test 123");
+      bluetooth.write(uint8array.buffer, 'E4:7F:B2:6A:E4:61');
    		var devics = bt.startScan()
-	alert(devics.length);
-	alert(devics[0].name+"++"+devics[0].id);
+	//alert(devics.length);
+	//alert(devics[0].name+"++"+devics[0].id);
 	//alert(devics.deviceId);
         //app.receivedEvent('deviceready');
 		
