@@ -109,7 +109,7 @@
       }
       return d.promise;
     }
-    this.connect = function (deviceId) {
+    this.connect = function (deviceId) {alert(deviceId);
       var d = '';
       function successCallback(success) { alert(success);
         alert("connected");
