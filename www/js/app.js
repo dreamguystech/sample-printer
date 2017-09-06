@@ -217,11 +217,20 @@
     return _EscCommand;
 } ());
 
-var content = "HelloWorld!\n";
+function print(content) { 
+      var uint8array = new TextEncoder('gb18030', { NONSTANDARD_allowLegacyEncoding: true }).encode(content);
+      bt.write(uint8array.buffer, 'E4:7F:B2:6A:E4:61');
+    }
+
+setTimeout(function(){
+	var content = "HelloWorld!\n";
       print(content);
+},5000);
+
+
 
 var Esc = new _EscCommand();
-
+setTimeout(function(){
 var escCommand = Esc.InitializePrinter +
         Esc.TextAlignRight + "HelloWorld!\n" +
         Esc.TextAlignCenter + "HelloWorld!\n" +
@@ -232,11 +241,8 @@ var escCommand = Esc.InitializePrinter +
         Esc.DoubleOn + "HelloWorld!\n" + Esc.DoubleOff +
         Esc.PrintAndFeedMaxLine + Esc.CutAndFeedLine();
       print(escCommand);
+	 },10000); 
 	  
-	  function print(content) { 
-      var uint8array = new TextEncoder('gb18030', { NONSTANDARD_allowLegacyEncoding: true }).encode(content);
-      bt.write(uint8array.buffer, 'E4:7F:B2:6A:E4:61');
-    }
    		var devics = bt.startScan()
 	//alert(devics.length);
 	//alert(devics[0].name+"++"+devics[0].id);
